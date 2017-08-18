@@ -1,7 +1,7 @@
 {
   "name": "vue1.x-ace-editor",
   "version": "0.0.1",
-  "description": "A Vue1.x's component that can edit sql now based on ace/brace",
+  "description": "A Vue1.x's component which can support sql now based on ace/brace",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
