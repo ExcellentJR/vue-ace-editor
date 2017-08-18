@@ -42,40 +42,41 @@ module.exports = {
     methods: {
       setConfig(){
         var _this = this;
-        editor.$blockScrolling = Infinity;
-        editor.setFontSize(_this.config.fontsize); //设置编辑器里字体的大小，貌似这个可以在外面加CSS样式，但是我试了不行，所以这样写
-        editor.session.setMode("ace/mode/" + _this.config.language); //设置代码补全和提示的语法为python，这个需要为不同的语言写不同的模块，不然没有提示功能
-        editor.setOptions({ //这个到大括号结束是说设置编辑器是否自动补全，是否自动提示等
+        _this.editor.$blockScrolling = Infinity;
+        _this.editor.setFontSize(_this.config.fontsize); //设置编辑器里字体的大小，貌似这个可以在外面加CSS样式，但是我试了不行，所以这样写
+        _this.editor.session.setMode("ace/mode/" + _this.config.language); //设置代码补全和提示的语法为python，这个需要为不同的语言写不同的模块，不然没有提示功能
+        _this.editor.setOptions({ //这个到大括号结束是说设置编辑器是否自动补全，是否自动提示等
             enableBasicAutocompletion: _this.config.enableBasicAutocompletion,
             enableSnippets: _this.config.enableSnippets,
             enableLiveAutocompletion: _this.config.enableLiveAutocompletion
         });
-        editor.setTheme("ace/theme/" + _this.config.theme); //设置主题为chrome
+        _this.editor.setTheme("ace/theme/" + _this.config.theme); //设置主题为chrome
         //设置编辑器自动换行
-        editor.getSession().setWrapLimitRange(_this.config.wrapLimitRange1, _this.config.wrapLimitRange2);
-        editor.getSession().setUseWrapMode(_this.config.isWrap);
+        _this.editor.getSession().setWrapLimitRange(_this.config.wrapLimitRange1, _this.config.wrapLimitRange2);
+        _this.editor.getSession().setUseWrapMode(_this.config.isWrap);
         //是否显示垂直衬线
-        editor.renderer.setShowPrintMargin(_this.config.isShowPrintMargin);
+        _this.editor.renderer.setShowPrintMargin(_this.config.isShowPrintMargin);
         //设置编辑器为空时的提示
-        editor.on("input", function() {
-          _this.update(_this.config.placeholder)
+        _this.editor.on("input", function() {
+        _this.update(_this.config.placeholder)
         });
         setTimeout(function() {
             _this.update(_this.config.placeholder)
         }, 100);
       },
       update(str){
-        var shouldShow = !editor.session.getValue().length,
-            node = editor.renderer.emptyMessageNode;
+        var _this = this,
+            shouldShow = !_this.editor.session.getValue().length,
+            node = _this.editor.renderer.emptyMessageNode;
         if (!shouldShow && node) {
-            editor.renderer.scroller.removeChild(editor.renderer.emptyMessageNode);
-            editor.renderer.emptyMessageNode = null;
+            _this.editor.renderer.scroller.removeChild(_this.editor.renderer.emptyMessageNode);
+            _this.editor.renderer.emptyMessageNode = null;
         } else if (shouldShow && !node) {
-            node = editor.renderer.emptyMessageNode = document.createElement("div");
+            node = _this.editor.renderer.emptyMessageNode = document.createElement("div");
             node.textContent = str;
             node.className = "ace_invisible ace_emptyMessage";
             node.style.padding = "0 9px";
-            editor.renderer.scroller.appendChild(node);
+            _this.editor.renderer.scroller.appendChild(node);
         }
       }
     },
@@ -88,8 +89,8 @@ module.exports = {
     ready() {
         var _this = this,
             lang = _this.config.lang || 'sql',
-            theme = _this.config.theme||'chrome',
-            editor = _this.editor = ace.edit(_this.$el);
+            theme = _this.config.theme||'chrome';
+        editor = _this.editor = ace.edit(_this.$el);
             
         _this.$emit('init',editor);
         
