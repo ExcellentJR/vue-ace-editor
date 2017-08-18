@@ -8,11 +8,13 @@ module.exports = {
         },
         style: {
           type: Object,
-          default:{
-            width: '100%',
-            height: '300px',
-            position: 'absolute'
-          }
+          default: function(){
+                return {
+                    height: '300px',
+                    width: '100%',
+                    position: 'absolute'
+                }
+            }
         },
         config: {
           type: Object,
