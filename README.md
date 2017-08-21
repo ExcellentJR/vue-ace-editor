@@ -18,6 +18,7 @@ a vue1.x ace-editor component
   ```
 3.Require the editor's mode/theme module in options's events vue-aceeditor:init
   You can choose the language and the theme what you need form the brace mode and theme 
+  这是很重要的一步：涉及到编辑器语言模块和编辑器主题，如果需要编辑不同语言则根据注释选择
   ```
   {
     components,
@@ -25,10 +26,10 @@ a vue1.x ace-editor component
     methods,
     events:{
         'vue-aceeditor:init':function () {
-            require('brace/mode/sql');
-            require('brace/theme/chrome');
-            require('brace/ext/language_tools');
-            require('brace/snippets/sql');
+            require('brace/mode/sql');//选择编辑器语言，eg：'brace/mode/python'
+            require('brace/theme/chrome');//选择编辑器主题，eg：'brace/theme/tomorrow'
+            require('brace/snippets/sql');//此处根据编辑器语言来选择，两者同步
+            require('brace/ext/language_tools');
         }
     },
   }
