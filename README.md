@@ -25,8 +25,10 @@ a vue1.x ace-editor component
     methods,
     events:{
         'vue-aceeditor:init':function () {
-            require('vue-aceeditor/node_modules/brace/mode/sql');
-            require('vue-aceeditor/node_modules/brace/theme/chrome');
+            require('brace/mode/sql');
+            require('brace/theme/chrome');
+            require('brace/ext/language_tools');
+            require('brace/snippets/sql');
         }
     },
   }
