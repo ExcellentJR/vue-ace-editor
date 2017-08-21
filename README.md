@@ -2,8 +2,11 @@
 a vue1.x ace-editor component
 ## How to Use？
 1.Install
+  ```
   npm install vue-aceeditor
+  ```
 2.Require it in components of Vue options
+  ```
   {
       components: {
           editor:require('vue-aceeditor'),
@@ -12,8 +15,10 @@ a vue1.x ace-editor component
       methods,
       ...
   }
+  ```
 3.Require the editor's mode/theme module in options's events vue-aceeditor:init
   You can choose the language and the theme what you need form the brace mode and theme 
+  ```
   {
     components,
     data,
@@ -25,9 +30,12 @@ a vue1.x ace-editor component
         }
     },
   }
+  ```
 4.Use the component in template
+  ```
   <aceeditor :style.sync="style" config="config"></aceeditor>
-  
+  ```
+  ```
   data(){
     return {
       style: {
@@ -49,3 +57,4 @@ a vue1.x ace-editor component
       }
     }
   }
+  ```
