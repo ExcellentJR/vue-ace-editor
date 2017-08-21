@@ -9,7 +9,7 @@ a vue1.x ace-editor component
   ```
   {
       components: {
-          editor:require('vue-aceeditor'),
+          aceeditor:require('vue-aceeditor'),
       },
       data,
       methods,
